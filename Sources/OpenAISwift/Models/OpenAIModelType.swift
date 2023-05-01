@@ -23,10 +23,14 @@ public enum OpenAIModelType {
     
     /// ``Embedding`` Family of Models
     case embedding(Embedding)
-    
+
+    /// ``Moderation`` Family of Models
+    case moderation(Moderation)
+
     /// Other Custom Models
     case other(String)
-    
+
+
     public var modelName: String {
         switch self {
         case .gpt3(let model): return model.rawValue
@@ -34,6 +38,7 @@ public enum OpenAIModelType {
         case .feature(let model): return model.rawValue
         case .chat(let model): return model.rawValue
         case .embedding(let model): return model.rawValue
+        case .moderation(let model): return model.rawValue
         case .other(let modelName): return modelName
         }
     }
@@ -105,14 +110,22 @@ public enum OpenAIModelType {
         /// > Model Name: gpt-3.5-turbo-0301
         case chatgpt0301 = "gpt-3.5-turbo-0301"
     }
-    
+
     /// A set of models for the embedding
     /// You can read the [API Docs](https://platform.openai.com/docs/api-reference/embeddings)
     public enum Embedding: String {
-        
+
         /// The new model, text-embedding-ada-002, replaces five separate models for text search, text similarity, and code search, and outperforms previous most capable model, Davinci, at most tasks, while being priced 99.8% lower.
         ///
         /// > Model Name: text-embedding-ada-002
         case ada = "text-embedding-ada-002"
+    }
+
+    public enum Moderation: String {
+        /// Automatically upgraded over time for improved accuracy, but may alter expected deterministic results.
+        case latest = "text-moderation-latest"
+
+        /// Lower accuracy, but provides advanced notice prior to internal upgrades.
+        case stable = "text-moderation-stable"
     }
 }
