@@ -14,8 +14,6 @@ enum Endpoint {
 }
 
 extension Endpoint {
-    case moderations
-
     var path: String {
         switch self {
             case .completions:
